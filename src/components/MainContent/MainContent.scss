@@ -1,0 +1,28 @@
+.main-content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: to-rem(30px);
+
+  &__form {
+    margin-top: to-rem(20px);
+  }
+
+  &__title {
+    text-align: center;
+    font-size: to-rem(32px);
+    color: $gray-color-second;
+  }
+
+  &__spinner {
+    display: block;
+    width: 80px;
+    margin: auto;
+  }
+
+  &__error {
+    display: block;
+    margin: auto;
+    font-size: to-rem(30px);
+  }
+}

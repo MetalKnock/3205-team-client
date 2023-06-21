@@ -7,9 +7,15 @@ import { toast } from 'react-toastify';
 import { searchUsers } from 'src/api/usersApi';
 import { useUsersContext } from 'src/context/UsersContext';
 import { InputContainer } from './InputContainer';
+import './UserForm.scss';
+import Button from '../Button/Button';
 
-export default function UserForm() {
-  const { setUsers, setIsLoading, setError } = useUsersContext();
+interface UserFormProps {
+  className?: string;
+}
+
+export default function UserForm({ className }: UserFormProps) {
+  const { isLoading, setUsers, setIsLoading, setError } = useUsersContext();
 
   const {
     register,
@@ -23,6 +29,7 @@ export default function UserForm() {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
+      setError('');
       setIsLoading(true);
       const number = data.number?.split('-').join('');
 
@@ -40,26 +47,39 @@ export default function UserForm() {
   });
 
   return (
-    <form onSubmit={onSubmit}>
-      <InputContainer label={FormFields.email} error={errors.email?.message}>
+    <form className={`user-form ${className}`} onSubmit={onSubmit}>
+      <h2 className='user-form__title'>Search users</h2>
+      <InputContainer
+        className='user-form__input-container'
+        label={FormFields.email}
+        error={errors.email?.message}
+      >
         <input
+          className='user-form__field'
           type='text'
           id={FormFields.email}
+          placeholder='example@gmail.com'
           {...register('email', {
             required: ERROR_MESSAGES.email.required,
             pattern: { value: EMAIL_REGEX, message: ERROR_MESSAGES.email.regex },
           })}
         />
       </InputContainer>
-      <InputContainer label={FormFields.number} error={errors.number?.message}>
+      <InputContainer
+        className='user-form__input-container'
+        label={FormFields.number}
+        error={errors.number?.message}
+      >
         <Controller
           control={control}
           name='number'
           rules={{ pattern: { value: NUMBER_REGEX, message: ERROR_MESSAGES.number.regex } }}
           render={({ field: { onChange, name, value } }) => (
             <PatternFormat
+              className='user-form__field'
               format='##-##-##'
               mask='_'
+              placeholder='12-34-56'
               name={name}
               value={value}
               onChange={onChange}
@@ -67,7 +87,13 @@ export default function UserForm() {
           )}
         />
       </InputContainer>
-      <button type='submit'>Submit</button>
+      <Button className='user-form__button' isSubmit disabled={isLoading}>
+        Submit
+      </Button>
     </form>
   );
 }
+
+UserForm.defaultProps = {
+  className: '',
+};

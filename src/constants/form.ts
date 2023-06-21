@@ -8,8 +8,8 @@ enum NumberErrors {
 }
 
 enum FormFields {
-  email = 'email',
-  number = 'number',
+  email = '*Email',
+  number = 'Number',
 }
 
 const ERROR_MESSAGES = {

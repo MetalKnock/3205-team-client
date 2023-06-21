@@ -1,0 +1,32 @@
+.not-found {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  &__title {
+    font-size: to-rem(150px);
+    font-weight: 700;
+  }
+
+  &__subtitle {
+    font-weight: 600;
+    font-size: to-rem(30px);
+    margin-top: to-rem(40px);
+  }
+
+  &__text {
+    margin-top: to-rem(18px);
+    font-weight: 500;
+  }
+
+  &__link {
+    text-decoration: none;
+  }
+
+  &__button {
+    margin: to-rem(80px) auto 0 auto;
+    max-width: 300px;
+  }
+}

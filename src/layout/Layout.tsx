@@ -5,7 +5,9 @@ export default function Layout() {
   return (
     <>
       <main>
-        <Outlet />
+        <div className='container'>
+          <Outlet />
+        </div>
       </main>
       <ToastContainer
         position='bottom-right'
