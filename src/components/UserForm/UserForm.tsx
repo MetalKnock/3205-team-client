@@ -8,7 +8,7 @@ import { searchUsers } from 'src/api/usersApi';
 import { useUsersContext } from 'src/context/UsersContext';
 import { InputContainer } from './InputContainer';
 import './UserForm.scss';
-import Button from '../Button/Button';
+import { Button } from '../Button';
 
 interface UserFormProps {
   className?: string;

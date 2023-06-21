@@ -1,4 +1,4 @@
-import Button from 'src/components/Button/Button';
+import { Button } from 'src/components/Button';
 import './NotFound.scss';
 import { Link } from 'react-router-dom';
 import { RoutePath } from 'src/constants/common';
