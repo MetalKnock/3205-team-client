@@ -1,3 +1,10 @@
+import { MainContent } from 'src/components/MainContent';
+import { UsersContextProvider } from 'src/context/UsersContext';
+
 export default function Main() {
-  return <div>main</div>;
+  return (
+    <UsersContextProvider>
+      <MainContent />
+    </UsersContextProvider>
+  );
 }
