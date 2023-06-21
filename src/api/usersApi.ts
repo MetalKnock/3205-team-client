@@ -1,7 +1,13 @@
 import { API_URL, ApiPath } from 'src/constants/common';
 import { Users } from 'src/types/users.types';
 
-const searchUsers = async (email: string, number?: string) => {
+interface SearchUsersProps {
+  email: string;
+  number?: string;
+  signal: AbortSignal;
+}
+
+const searchUsers = async ({ email, number, signal }: SearchUsersProps) => {
   const response = await fetch(`${API_URL}${ApiPath.users}`, {
     method: 'POST',
     body: number
@@ -13,6 +19,7 @@ const searchUsers = async (email: string, number?: string) => {
     headers: {
       'Content-type': 'application/json',
     },
+    signal,
   });
 
   if (!response.ok) {
