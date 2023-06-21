@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { ERROR_MESSAGES, FormFields, EMAIL_REGEX, NUMBER_REGEX } from 'src/constants/form';
 import { FormData } from 'src/types/common.types';
@@ -15,7 +16,8 @@ interface UserFormProps {
 }
 
 export default function UserForm({ className }: UserFormProps) {
-  const { isLoading, setUsers, setIsLoading, setError } = useUsersContext();
+  const { setUsers, setIsLoading, setError } = useUsersContext();
+  const [abortController, setAbortController] = useState(new AbortController());
 
   const {
     register,
@@ -28,17 +30,25 @@ export default function UserForm({ className }: UserFormProps) {
   });
 
   const onSubmit = handleSubmit(async (data) => {
+    abortController.abort();
+    const newAbortController = new AbortController();
+    setAbortController(newAbortController);
+
     try {
       setError('');
       setIsLoading(true);
       const number = data.number?.split('-').join('');
 
-      const result = await searchUsers(data.email, number);
+      const result = await searchUsers({
+        email: data.email,
+        number,
+        signal: newAbortController.signal,
+      });
       setUsers(result);
       setError('');
       setIsLoading(false);
     } catch (error) {
-      if (error instanceof Error) {
+      if (error instanceof Error && error.name !== 'AbortError') {
         setIsLoading(false);
         setError(error.message);
         toast.error(error.message);
@@ -46,6 +56,11 @@ export default function UserForm({ className }: UserFormProps) {
     }
   });
 
+  useEffect(() => {
+    return () => {
+      abortController.abort();
+    };
+  }, [abortController]);
   return (
     <form className={`user-form ${className}`} onSubmit={onSubmit}>
       <h2 className='user-form__title'>Search users</h2>
@@ -87,7 +102,7 @@ export default function UserForm({ className }: UserFormProps) {
           )}
         />
       </InputContainer>
-      <Button className='user-form__button' isSubmit disabled={isLoading}>
+      <Button className='user-form__button' isSubmit>
         Submit
       </Button>
     </form>
