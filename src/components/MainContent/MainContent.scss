@@ -1,17 +1,17 @@
 .main-content {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: to-rem(30px);
+  min-height: 100vh;
 
   &__form {
     margin-top: to-rem(20px);
   }
 
   &__title {
-    text-align: center;
     font-size: to-rem(32px);
     color: $gray-color-second;
+    text-align: center;
   }
 
   &__spinner {

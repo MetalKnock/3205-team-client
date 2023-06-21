@@ -1,9 +1,9 @@
 $white-color: white;
-$gray-color: #666666;
-$gray-color-second: #333333;
+$gray-color: #666;
+$gray-color-second: #333;
 $background-color: #11111170;
 $background-color-hover: #11111183;
-$border-color: rgba(102, 102, 102, 0.35);
+$border-color: rgb(102 102 102 / 35%);
 $red-color: red;
 
 @mixin transition {

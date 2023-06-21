@@ -1,8 +1,10 @@
 .not-found {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  min-height: 100vh;
+
   text-align: center;
 
   &__title {
@@ -11,9 +13,9 @@
   }
 
   &__subtitle {
-    font-weight: 600;
-    font-size: to-rem(30px);
     margin-top: to-rem(40px);
+    font-size: to-rem(30px);
+    font-weight: 600;
   }
 
   &__text {
@@ -26,7 +28,7 @@
   }
 
   &__button {
-    margin: to-rem(80px) auto 0 auto;
     max-width: 300px;
+    margin: to-rem(80px) auto 0 auto;
   }
 }

@@ -5,8 +5,8 @@
   padding: 1px solid black;
 
   &__text {
-    text-align: center;
-    font-size: to-rem(30px);
     margin: auto;
+    font-size: to-rem(30px);
+    text-align: center;
   }
 }
