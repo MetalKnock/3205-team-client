@@ -1,0 +1,12 @@
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: to-rem(30px);
+  padding: 1px solid black;
+
+  &__text {
+    margin: auto;
+    font-size: to-rem(30px);
+    text-align: center;
+  }
+}
