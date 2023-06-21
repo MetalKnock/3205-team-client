@@ -1,0 +1,14 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    font-size: to-rem(16px);
+    color: $gray-color;
+  }
+
+  &__error {
+    font-size: to-rem(16px);
+    color: $red-color;
+  }
+}

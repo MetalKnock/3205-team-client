@@ -1,0 +1,38 @@
+.user-form {
+  display: flex;
+  flex-direction: column;
+
+  padding: to-rem(32px);
+
+  border: 1px solid $border-color;
+  border-radius: 24px;
+
+  &__title {
+    font-size: to-rem(32px);
+    color: $gray-color-second;
+    text-align: center;
+  }
+
+  &__input-container {
+    margin-top: to-rem(24px);
+  }
+
+  &__field {
+    margin-top: to-rem(7px);
+    padding: to-rem(15px) to-rem(24px);
+
+    font-size: to-rem(18px);
+    color: $gray-color-second;
+
+    border: 1px solid $border-color;
+    border-radius: 12px;
+
+    &:focus {
+      outline: 1px solid $border-color;
+    }
+  }
+
+  &__button {
+    margin-top: to-rem(40px);
+  }
+}
