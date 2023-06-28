@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { ERROR_MESSAGES, FormFields, EMAIL_REGEX, NUMBER_REGEX } from 'src/constants/form';
 import { FormData } from 'src/types/common.types';
@@ -45,7 +45,6 @@ export default function UserForm({ className }: UserFormProps) {
         signal: newAbortController.signal,
       });
       setUsers(result);
-      setError('');
       setIsLoading(false);
     } catch (error) {
       if (error instanceof Error && error.name !== 'AbortError') {
@@ -56,11 +55,6 @@ export default function UserForm({ className }: UserFormProps) {
     }
   });
 
-  useEffect(() => {
-    return () => {
-      abortController.abort();
-    };
-  }, [abortController]);
   return (
     <form className={`user-form ${className}`} onSubmit={onSubmit}>
       <h2 className='user-form__title'>Search users</h2>
