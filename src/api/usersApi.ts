@@ -8,14 +8,11 @@ interface SearchUsersProps {
 }
 
 const searchUsers = async ({ email, number, signal }: SearchUsersProps) => {
+  const requestBody = number ? { email, number } : { email };
+
   const response = await fetch(`${API_URL}${ApiPath.users}`, {
     method: 'POST',
-    body: number
-      ? JSON.stringify({
-          email,
-          number,
-        })
-      : JSON.stringify({ email }),
+    body: JSON.stringify(requestBody),
     headers: {
       'Content-type': 'application/json',
     },
